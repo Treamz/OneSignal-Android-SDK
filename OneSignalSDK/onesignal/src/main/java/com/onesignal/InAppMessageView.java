@@ -77,7 +77,7 @@ class InAppMessageView {
     private boolean hasBackground;
     private boolean shouldDismissWhenActive = false;
     private boolean isDragging = false;
-    private boolean disableDragDismiss = false;
+    private boolean disableDragDismiss = true;
     private OSInAppMessageContent messageContent;
     @NonNull private WebViewManager.Position displayLocation;
     private WebView webView;
@@ -93,7 +93,7 @@ class InAppMessageView {
         this.pageWidth = ViewGroup.LayoutParams.MATCH_PARENT;
         this.displayDuration = content.getDisplayDuration() == null ? 0 : content.getDisplayDuration();
         this.hasBackground = !displayLocation.isBanner();
-        this.disableDragDismiss = disableDragDismiss;
+        this.disableDragDismiss = true;
         this.messageContent = content;
         setMarginsFromContent(content);
     }
