@@ -126,7 +126,7 @@ class DraggableRelativeLayout extends RelativeLayout {
                if (params.dragDirection == Params.DRAGGABLE_DIRECTION_DOWN) {
                   if (lastYPos > params.dismissingYPos || yvel > params.dismissingYVelocity) {
                      settleDestY = params.offScreenYPos;
-                     dismissing = true;
+                     dismissing = false;
 
                      if (mListener != null)
                         mListener.onDismiss();
@@ -135,7 +135,7 @@ class DraggableRelativeLayout extends RelativeLayout {
                else {
                   if (lastYPos < params.dismissingYPos || yvel < params.dismissingYVelocity) {
                      settleDestY = params.offScreenYPos;
-                     dismissing = true;
+                     dismissing = false;
 
                      if (mListener != null)
                         mListener.onDismiss();
