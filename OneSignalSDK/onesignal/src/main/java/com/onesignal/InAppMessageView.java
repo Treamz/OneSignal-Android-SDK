@@ -361,7 +361,7 @@ class InAppMessageView {
 
             @Override
             public void onDragStart() {
-                isDragging = true;
+                isDragging = false;
             }
 
             @Override
