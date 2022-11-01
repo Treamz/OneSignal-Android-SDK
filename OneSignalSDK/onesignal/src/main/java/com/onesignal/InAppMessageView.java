@@ -354,9 +354,9 @@ class InAppMessageView {
             @Override
             public void onDismiss() {
                 if (messageController != null) {
-                    messageController.onMessageWillDismiss();
+//                    messageController.onMessageWillDismiss();
                 }
-                finishAfterDelay(null);
+//                finishAfterDelay(null);
             }
 
             @Override
@@ -476,8 +476,8 @@ class InAppMessageView {
             return;
         }
 
-        draggableRelativeLayout.dismiss();
-        finishAfterDelay(callback);
+//        draggableRelativeLayout.dismiss();
+//        finishAfterDelay(callback);
     }
 
     /**
