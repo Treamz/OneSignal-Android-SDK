@@ -128,8 +128,8 @@ class DraggableRelativeLayout extends RelativeLayout {
                      settleDestY = params.offScreenYPos;
                      dismissing = false;
 
-                     if (mListener != null)
-                        mListener.onDismiss();
+//                     if (mListener != null)
+//                        mListener.onDismiss();
                   }
                }
                else {
@@ -137,8 +137,8 @@ class DraggableRelativeLayout extends RelativeLayout {
                      settleDestY = params.offScreenYPos;
                      dismissing = false;
 
-                     if (mListener != null)
-                        mListener.onDismiss();
+//                     if (mListener != null)
+//                        mListener.onDismiss();
                   }
                }
             }
