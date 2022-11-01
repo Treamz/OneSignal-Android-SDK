@@ -249,9 +249,9 @@ class InAppMessageView {
                 break;
         }
 
-        draggableParams.dragDirection = displayLocation == WebViewManager.Position.TOP_BANNER ?
-                DraggableRelativeLayout.Params.DRAGGABLE_DIRECTION_UP :
-                DraggableRelativeLayout.Params.DRAGGABLE_DIRECTION_DOWN;
+//        draggableParams.dragDirection = displayLocation == WebViewManager.Position.TOP_BANNER ?
+//                DraggableRelativeLayout.Params.DRAGGABLE_DIRECTION_UP :
+//                DraggableRelativeLayout.Params.DRAGGABLE_DIRECTION_DOWN;
 
         return draggableParams;
     }

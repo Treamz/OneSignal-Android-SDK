@@ -169,8 +169,8 @@ class DraggableRelativeLayout extends RelativeLayout {
 
             // Therefore, the logic inside of onDragEnd() would be executed before touch up
             // again and our JS action will execute properly
-            if (mListener != null)
-               mListener.onDragEnd();
+//            if (mListener != null)
+//               mListener.onDragEnd();
             break;
       }
 
