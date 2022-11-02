@@ -15,8 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.widget.PopupWindowCompat;
 import androidx.cardview.widget.CardView;
-
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -225,11 +223,8 @@ class InAppMessageView {
         DraggableRelativeLayout.Params draggableParams = new DraggableRelativeLayout.Params();
         draggableParams.maxXPos = marginPxSizeRight;
         draggableParams.maxYPos = marginPxSizeTop;
-        draggableParams.draggingDisabled = true;
+        draggableParams.draggingDisabled = disableDragging;
         draggableParams.messageHeight = pageHeight;
-
-        OneSignal.onesignalLog(OneSignal.LOG_LEVEL.DEBUG, "CHEC WHERER I AM " + currentActivity);
-
         draggableParams.height = getDisplayYSize();
 
         switch (displayLocation) {
