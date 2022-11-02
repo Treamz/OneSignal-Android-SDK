@@ -127,10 +127,10 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
     }
 
     static void dismissCurrentInAppMessage() {
-        OneSignal.onesignalLog(OneSignal.LOG_LEVEL.DEBUG, "WebViewManager IAM dismissAndAwaitNextMessage lastInstance: " + lastInstance);
-        if (lastInstance != null) {
-            lastInstance.dismissAndAwaitNextMessage(null);
-        }
+//        OneSignal.onesignalLog(OneSignal.LOG_LEVEL.DEBUG, "WebViewManager IAM dismissAndAwaitNextMessage lastInstance: " + lastInstance);
+//        if (lastInstance != null) {
+//            lastInstance.dismissAndAwaitNextMessage(null);
+//        }
     }
 
     private static void setContentSafeAreaInsets(OSInAppMessageContent content, @NonNull final Activity activity) {
