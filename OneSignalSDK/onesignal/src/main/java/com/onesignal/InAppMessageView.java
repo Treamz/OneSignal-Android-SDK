@@ -169,8 +169,8 @@ class InAppMessageView {
                 //  not being ready to be shown yet
                 // When preparing the IAM, the correct height will be set and handle this job, so
                 //  all bases are covered and the draggableRelativeLayout will never have the wrong height
-                if (draggableRelativeLayout != null)
-                    draggableRelativeLayout.setParams(createDraggableLayoutParams(pageHeight, displayLocation, disableDragDismiss));
+//                if (draggableRelativeLayout != null)
+//                    draggableRelativeLayout.setParams(createDraggableLayoutParams(pageHeight, displayLocation, disableDragDismiss));
             }
         });
     }

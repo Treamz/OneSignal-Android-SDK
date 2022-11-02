@@ -687,7 +687,7 @@ class OSInAppMessageController extends OSBackgroundManager implements OSDynamicT
             logger.debug("OSInAppMessageController messageWasDismissed dismissedMessages: " + dismissedMessages.toString());
         }
 
-        if (true)
+        if (!shouldWaitForPromptsBeforeDismiss())
             onMessageDidDismiss(message);
 
         dismissCurrentMessage(message);
