@@ -439,7 +439,13 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
         enableWebViewRemoteDebugging();
 
         webView = new OSWebView(currentActivity);
-
+        webView.setWebChromeClient(new WebChromeClient());
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return false;
+            }
+        });
         webView.setOverScrollMode(View.OVER_SCROLL_NEVER);
         webView.setVerticalScrollBarEnabled(false);
         webView.setHorizontalScrollBarEnabled(false);
