@@ -6,6 +6,7 @@ import android.webkit.WebView;
 // Custom WebView to lock scrolling
 public class OSWebView extends WebView {
 
+
    public OSWebView(Context context) {
       super(context);
    }

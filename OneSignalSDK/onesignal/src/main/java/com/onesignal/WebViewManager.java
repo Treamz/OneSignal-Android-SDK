@@ -10,7 +10,9 @@ import android.util.Base64;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -321,6 +323,8 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
                 String safeAreaInsetsObject = String.format(OSJavaScriptInterface.SAFE_AREA_JS_OBJECT, insets[0], insets[1], insets[2], insets[3]);
                 String safeAreaInsetsFunction = String.format(OSJavaScriptInterface.SET_SAFE_AREA_INSETS_JS_FUNCTION, safeAreaInsetsObject);
                 webView.evaluateJavascript(safeAreaInsetsFunction, null);
+                webView.setWebChromeClient(new WebChromeClient());
+                webView.setWebViewClient(new WebViewClient());
             }
         });
     }
