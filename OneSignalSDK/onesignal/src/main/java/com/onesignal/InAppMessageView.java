@@ -626,9 +626,9 @@ class InAppMessageView {
         Animator.AnimatorListener animCallback = new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                cleanupViewsAfterDismiss();
-                if (callback != null)
-                    callback.onComplete();
+//                cleanupViewsAfterDismiss();
+//                if (callback != null)
+//                    callback.onComplete();
             }
         };
 
