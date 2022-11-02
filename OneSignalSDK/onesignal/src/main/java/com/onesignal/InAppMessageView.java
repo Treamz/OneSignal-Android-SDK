@@ -515,11 +515,11 @@ class InAppMessageView {
             handler.removeCallbacks(scheduleDismissRunnable);
             scheduleDismissRunnable = null;
         }
-        if (draggableRelativeLayout != null)
-            draggableRelativeLayout.removeAllViews();
+//        if (draggableRelativeLayout != null)
+//            draggableRelativeLayout.removeAllViews();
 
-        if (popupWindow != null)
-            popupWindow.dismiss();
+//        if (popupWindow != null)
+//            popupWindow.dismiss();
         dereferenceViews();
     }
 

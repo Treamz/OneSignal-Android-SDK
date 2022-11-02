@@ -379,8 +379,8 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
         else if (!lastActivityName.equals(currentActivityName)) {
             if (!closing) {
                 // Navigate to new activity while displaying current IAM
-                if (messageView != null)
-                    messageView.removeAllViews();
+//                if (messageView != null)
+//                    messageView.removeAllViews();
                 showMessageView(lastPageHeight);
             }
         } else {
