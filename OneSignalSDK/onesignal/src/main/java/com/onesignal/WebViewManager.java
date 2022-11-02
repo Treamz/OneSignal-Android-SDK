@@ -41,7 +41,8 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
     private static final String TAG = WebViewManager.class.getCanonicalName();
     private static final int MARGIN_PX_SIZE = dpToPx(24);
     private static final int IN_APP_MESSAGE_INIT_DELAY = 200;
-    private final Object messageViewSyncLock = new Object() {};
+    private final Object messageViewSyncLock = new Object() {
+    };
 
     enum Position {
         TOP_BANNER,
@@ -60,16 +61,23 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
         }
     }
 
-    @Nullable private OSWebView webView;
-    @Nullable private InAppMessageView messageView;
+    @Nullable
+    private OSWebView webView;
+    @Nullable
+    private InAppMessageView messageView;
 
-    @Nullable protected static WebViewManager lastInstance = null;
+    @Nullable
+    protected static WebViewManager lastInstance = null;
 
-    @NonNull private Activity activity;
-    @NonNull private OSInAppMessageInternal message;
-    @NonNull private OSInAppMessageContent messageContent;
+    @NonNull
+    private Activity activity;
+    @NonNull
+    private OSInAppMessageInternal message;
+    @NonNull
+    private OSInAppMessageContent messageContent;
 
-    @Nullable private String currentActivityName = null;
+    @Nullable
+    private String currentActivityName = null;
     private Integer lastPageHeight = null;
 
     // dismissFired prevents onDidDismiss from getting called multiple times
@@ -139,7 +147,7 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
         String html = content.getContentHtml();
         String safeAreaInsetsScript = OSJavaScriptInterface.SET_SAFE_AREA_INSETS_SCRIPT;
         int[] insets = OSViewUtils.getCutoutAndStatusBarInsets(activity);
-        String safeAreaJSObject = String.format(OSJavaScriptInterface.SAFE_AREA_JS_OBJECT, insets[0] ,insets[1],insets[2],insets[3]);
+        String safeAreaJSObject = String.format(OSJavaScriptInterface.SAFE_AREA_JS_OBJECT, insets[0], insets[1], insets[2], insets[3]);
         safeAreaInsetsScript = String.format(safeAreaInsetsScript, safeAreaJSObject);
         html += safeAreaInsetsScript;
         content.setContentHtml(html);
@@ -255,7 +263,8 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
             }
         }
 
-        private @NonNull Position getDisplayLocation(JSONObject jsonObject) {
+        private @NonNull
+        Position getDisplayLocation(JSONObject jsonObject) {
             Position displayLocation = Position.FULL_SCREEN;
             try {
                 if (jsonObject.has(IAM_DISPLAY_LOCATION_KEY) && !jsonObject.get(IAM_DISPLAY_LOCATION_KEY).equals(""))
@@ -324,7 +333,12 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
                 String safeAreaInsetsFunction = String.format(OSJavaScriptInterface.SET_SAFE_AREA_INSETS_JS_FUNCTION, safeAreaInsetsObject);
                 webView.evaluateJavascript(safeAreaInsetsFunction, null);
                 webView.setWebChromeClient(new WebChromeClient());
-                webView.setWebViewClient(new WebViewClient());
+                webView.setWebViewClient(new WebViewClient() {
+                    @Override
+                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                        return false;
+                    }
+                });
             }
         });
     }
@@ -366,7 +380,7 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
                     }
                 });
             }
-       });
+        });
     }
 
     @Override
@@ -376,7 +390,7 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
         this.currentActivityName = activity.getLocalClassName();
 
         OneSignal.Log(OneSignal.LOG_LEVEL.DEBUG, "In app message activity available " +
-                "currentActivityName: " + currentActivityName + " lastActivityName: " + lastActivityName );
+                "currentActivityName: " + currentActivityName + " lastActivityName: " + lastActivityName);
 
         if (lastActivityName == null)
             showMessageView(null);
@@ -422,34 +436,34 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
 
     @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
     private void setupWebView(@NonNull final Activity currentActivity, final @NonNull String base64Message, final boolean isFullScreen) {
-       enableWebViewRemoteDebugging();
+        enableWebViewRemoteDebugging();
 
-       webView = new OSWebView(currentActivity);
+        webView = new OSWebView(currentActivity);
 
-       webView.setOverScrollMode(View.OVER_SCROLL_NEVER);
-       webView.setVerticalScrollBarEnabled(false);
-       webView.setHorizontalScrollBarEnabled(false);
-       webView.getSettings().setJavaScriptEnabled(true);
+        webView.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        webView.setVerticalScrollBarEnabled(false);
+        webView.setHorizontalScrollBarEnabled(false);
+        webView.getSettings().setJavaScriptEnabled(true);
 
-       // Setup receiver for page events / data from JS
-       webView.addJavascriptInterface(new OSJavaScriptInterface(), OSJavaScriptInterface.JS_OBJ_NAME);
-       if (isFullScreen) {
-           webView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
-                   View.SYSTEM_UI_FLAG_IMMERSIVE |
-                   View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-           if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-               webView.setFitsSystemWindows(false);
-           }
-       }
-       blurryRenderingWebViewForKitKatWorkAround(webView);
+        // Setup receiver for page events / data from JS
+        webView.addJavascriptInterface(new OSJavaScriptInterface(), OSJavaScriptInterface.JS_OBJ_NAME);
+        if (isFullScreen) {
+            webView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+                    View.SYSTEM_UI_FLAG_IMMERSIVE |
+                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                webView.setFitsSystemWindows(false);
+            }
+        }
+        blurryRenderingWebViewForKitKatWorkAround(webView);
 
-       OSViewUtils.decorViewReady(currentActivity, new Runnable() {
-          @Override
-          public void run() {
-             setWebViewToMaxSize(currentActivity);
-             webView.loadData(base64Message,"text/html; charset=utf-8","base64");
-          }
-       });
+        OSViewUtils.decorViewReady(currentActivity, new Runnable() {
+            @Override
+            public void run() {
+                setWebViewToMaxSize(currentActivity);
+                webView.loadData(base64Message, "text/html; charset=utf-8", "base64");
+            }
+        });
     }
 
     private void blurryRenderingWebViewForKitKatWorkAround(@NonNull WebView webView) {
@@ -467,7 +481,7 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
     //  it via this SDK's InAppMessageView class. If smaller than the screen it will correctly
     //  set it's height to match.
     private void setWebViewToMaxSize(Activity activity) {
-        webView.layout(0,0, getWebViewMaxSizeX(activity), getWebViewMaxSizeY(activity));
+        webView.layout(0, 0, getWebViewMaxSizeX(activity), getWebViewMaxSizeY(activity));
     }
 
     private void setMessageView(InAppMessageView view) {
@@ -522,7 +536,7 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
 
     private int getWebViewMaxSizeY(Activity activity) {
         int margin = messageContent.isFullBleed() ? 0 : (MARGIN_PX_SIZE * 2);
-       return OSViewUtils.getWindowHeight(activity) - margin;
+        return OSViewUtils.getWindowHeight(activity) - margin;
     }
 
     private void removeActivityListener() {
@@ -530,6 +544,7 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
         if (activityLifecycleHandler != null)
             activityLifecycleHandler.removeActivityAvailableListener(TAG + message.messageId);
     }
+
     /**
      * Trigger the {@link #messageView} dismiss animation flow
      */
