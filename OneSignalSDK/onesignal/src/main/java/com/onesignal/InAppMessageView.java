@@ -20,7 +20,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.Animation;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
@@ -113,6 +115,13 @@ class InAppMessageView {
     void setWebView(WebView webView) {
         this.webView = webView;
         this.webView.setBackgroundColor(Color.TRANSPARENT);
+        webView.setWebChromeClient(new WebChromeClient());
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return false;
+            }
+        });
     }
 
     void setMessageController(InAppMessageViewListener messageController) {
