@@ -227,7 +227,9 @@ class InAppMessageView {
         draggableParams.maxYPos = marginPxSizeTop;
         draggableParams.draggingDisabled = true;
         draggableParams.messageHeight = pageHeight;
-        Log.d("CUSTOMTREAMZ", "SETTOTRUE");
+
+        OneSignal.onesignalLog(OneSignal.LOG_LEVEL.DEBUG, "CHEC WHERER I AM " + currentActivity);
+
         draggableParams.height = getDisplayYSize();
 
         switch (displayLocation) {
@@ -249,9 +251,9 @@ class InAppMessageView {
                 break;
         }
 
-//        draggableParams.dragDirection = displayLocation == WebViewManager.Position.TOP_BANNER ?
-//                DraggableRelativeLayout.Params.DRAGGABLE_DIRECTION_UP :
-//                DraggableRelativeLayout.Params.DRAGGABLE_DIRECTION_DOWN;
+        draggableParams.dragDirection = displayLocation == WebViewManager.Position.TOP_BANNER ?
+                DraggableRelativeLayout.Params.DRAGGABLE_DIRECTION_UP :
+                DraggableRelativeLayout.Params.DRAGGABLE_DIRECTION_DOWN;
 
         return draggableParams;
     }
@@ -354,14 +356,14 @@ class InAppMessageView {
             @Override
             public void onDismiss() {
                 if (messageController != null) {
-//                    messageController.onMessageWillDismiss();
+                    messageController.onMessageWillDismiss();
                 }
-//                finishAfterDelay(null);
+                finishAfterDelay(null);
             }
 
             @Override
             public void onDragStart() {
-                isDragging = false;
+                isDragging = true;
             }
 
             @Override
@@ -476,8 +478,8 @@ class InAppMessageView {
             return;
         }
 
-//        draggableRelativeLayout.dismiss();
-//        finishAfterDelay(callback);
+        draggableRelativeLayout.dismiss();
+        finishAfterDelay(callback);
     }
 
     /**

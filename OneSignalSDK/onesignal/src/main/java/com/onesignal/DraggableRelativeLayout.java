@@ -126,19 +126,19 @@ class DraggableRelativeLayout extends RelativeLayout {
                if (params.dragDirection == Params.DRAGGABLE_DIRECTION_DOWN) {
                   if (lastYPos > params.dismissingYPos || yvel > params.dismissingYVelocity) {
                      settleDestY = params.offScreenYPos;
-                     dismissing = false;
+                     dismissing = true;
 
-//                     if (mListener != null)
-//                        mListener.onDismiss();
+                     if (mListener != null)
+                        mListener.onDismiss();
                   }
                }
                else {
                   if (lastYPos < params.dismissingYPos || yvel < params.dismissingYVelocity) {
                      settleDestY = params.offScreenYPos;
-                     dismissing = false;
+                     dismissing = true;
 
-//                     if (mListener != null)
-//                        mListener.onDismiss();
+                     if (mListener != null)
+                        mListener.onDismiss();
                   }
                }
             }
@@ -169,8 +169,8 @@ class DraggableRelativeLayout extends RelativeLayout {
 
             // Therefore, the logic inside of onDragEnd() would be executed before touch up
             // again and our JS action will execute properly
-//            if (mListener != null)
-//               mListener.onDragEnd();
+            if (mListener != null)
+               mListener.onDragEnd();
             break;
       }
 

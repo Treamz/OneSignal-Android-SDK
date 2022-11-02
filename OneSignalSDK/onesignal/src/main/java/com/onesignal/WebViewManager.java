@@ -474,7 +474,7 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
 
     private void createNewInAppMessageView(boolean dragToDismissDisabled) {
         lastPageHeight = messageContent.getPageHeight();
-        InAppMessageView newView = new InAppMessageView(webView, messageContent, true);
+        InAppMessageView newView = new InAppMessageView(webView, messageContent, dragToDismissDisabled);
         setMessageView(newView);
         messageView.setMessageController(new InAppMessageView.InAppMessageViewListener() {
             @Override
