@@ -350,15 +350,15 @@ class InAppMessageView {
         draggableRelativeLayout.setListener(new DraggableRelativeLayout.DraggableListener() {
             @Override
             public void onDismiss() {
-                if (messageController != null) {
-                    messageController.onMessageWillDismiss();
-                }
-                finishAfterDelay(null);
+//                if (messageController != null) {
+//                    messageController.onMessageWillDismiss();
+//                }
+              //  finishAfterDelay(null);
             }
 
             @Override
             public void onDragStart() {
-                isDragging = true;
+                isDragging = false;
             }
 
             @Override
@@ -384,7 +384,7 @@ class InAppMessageView {
      * Simple getter to know when the MessageView is in a dragging state
      */
     boolean isDragging() {
-        return isDragging;
+        return false;
     }
 
     /**
