@@ -325,6 +325,13 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
     }
 
     private void updateSafeAreaInsets() {
+        webView.setWebChromeClient(new WebChromeClient());
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                return false;
+            }
+        });
         OSUtils.runOnMainUIThread(new Runnable() {
             @Override
             public void run() {
@@ -332,13 +339,7 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
                 String safeAreaInsetsObject = String.format(OSJavaScriptInterface.SAFE_AREA_JS_OBJECT, insets[0], insets[1], insets[2], insets[3]);
                 String safeAreaInsetsFunction = String.format(OSJavaScriptInterface.SET_SAFE_AREA_INSETS_JS_FUNCTION, safeAreaInsetsObject);
                 webView.evaluateJavascript(safeAreaInsetsFunction, null);
-                webView.setWebChromeClient(new WebChromeClient());
-                webView.setWebViewClient(new WebViewClient() {
-                    @Override
-                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                        return false;
-                    }
-                });
+
             }
         });
     }
