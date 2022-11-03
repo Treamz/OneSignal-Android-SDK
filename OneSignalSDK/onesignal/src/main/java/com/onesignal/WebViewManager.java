@@ -439,13 +439,7 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
         enableWebViewRemoteDebugging();
 
         webView = new OSWebView(currentActivity);
-        webView.setWebChromeClient(new WebChromeClient());
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return false;
-            }
-        });
+
         webView.setOverScrollMode(View.OVER_SCROLL_NEVER);
         webView.setVerticalScrollBarEnabled(false);
         webView.setHorizontalScrollBarEnabled(false);
@@ -466,6 +460,13 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
         OSViewUtils.decorViewReady(currentActivity, new Runnable() {
             @Override
             public void run() {
+                webView.setWebChromeClient(new WebChromeClient());
+                webView.setWebViewClient(new WebViewClient() {
+                    @Override
+                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                        return false;
+                    }
+                });
                 setWebViewToMaxSize(currentActivity);
 //                webView.loadUrl("https://google.com");
                 webView.loadData(base64Message, "text/html; charset=utf-8", "base64");
