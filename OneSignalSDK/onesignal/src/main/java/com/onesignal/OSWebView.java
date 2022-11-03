@@ -9,15 +9,7 @@ import androidx.annotation.NonNull;
 // Custom WebView to lock scrolling
 public class OSWebView extends WebView {
 
-   @Override
-   public void setWebViewClient(@NonNull WebViewClient client) {
-      new WebViewClient() {
-         @Override
-         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            return false;
-         }
-      };
-   }
+
 
    public OSWebView(Context context) {
       super(context);
