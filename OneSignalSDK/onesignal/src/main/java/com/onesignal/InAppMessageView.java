@@ -115,13 +115,7 @@ class InAppMessageView {
     void setWebView(WebView webView) {
         this.webView = webView;
         this.webView.setBackgroundColor(Color.TRANSPARENT);
-        webView.setWebChromeClient(new WebChromeClient());
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return false;
-            }
-        });
+
     }
 
     void setMessageController(InAppMessageViewListener messageController) {
@@ -160,6 +154,13 @@ class InAppMessageView {
                             "WebView height update skipped, new height will be used once it is displayed.");
                     return;
                 }
+//                webView.setWebChromeClient(new WebChromeClient());
+//                webView.setWebViewClient(new WebViewClient() {
+//                    @Override
+//                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                        return false;
+//                    }
+//                });
 
                 ViewGroup.LayoutParams layoutParams = webView.getLayoutParams();
                 if (layoutParams == null) {

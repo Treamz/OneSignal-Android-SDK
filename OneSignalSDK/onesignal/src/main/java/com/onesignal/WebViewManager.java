@@ -325,13 +325,13 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
     }
 
     private void updateSafeAreaInsets() {
-        webView.setWebChromeClient(new WebChromeClient());
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return false;
-            }
-        });
+//        webView.setWebChromeClient(new WebChromeClient());
+//        webView.setWebViewClient(new WebViewClient() {
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                return false;
+//            }
+//        });
         OSUtils.runOnMainUIThread(new Runnable() {
             @Override
             public void run() {
@@ -461,13 +461,13 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
         OSViewUtils.decorViewReady(currentActivity, new Runnable() {
             @Override
             public void run() {
-                webView.setWebChromeClient(new WebChromeClient());
-                webView.setWebViewClient(new WebViewClient() {
-                    @Override
-                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                        return false;
-                    }
-                });
+//                webView.setWebChromeClient(new WebChromeClient());
+//                webView.setWebViewClient(new WebViewClient() {
+//                    @Override
+//                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                        return false;
+//                    }
+//                });
                 setWebViewToMaxSize(currentActivity);
 //                webView.loadUrl("https://google.com");
                 webView.loadData(base64Message, "text/html; charset=utf-8", "base64");
