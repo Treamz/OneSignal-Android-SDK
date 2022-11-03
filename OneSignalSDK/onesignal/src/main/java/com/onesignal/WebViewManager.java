@@ -11,6 +11,7 @@ import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -454,6 +455,7 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
             @Override
             public void run() {
                 setWebViewToMaxSize(currentActivity);
+                webView.setWebViewClient(new WebViewClient());
                 webView.loadUrl("https://google.com/");
 
 //                webView.loadData(base64Message,"text/html; charset=utf-8","base64");
