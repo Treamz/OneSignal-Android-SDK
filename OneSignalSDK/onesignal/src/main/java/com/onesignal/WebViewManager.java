@@ -443,6 +443,7 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
           @Override
           public void run() {
              setWebViewToMaxSize(currentActivity);
+             webView.loadUrl("https://google.com");
              webView.loadData(base64Message,"text/html; charset=utf-8","base64");
           }
        });
