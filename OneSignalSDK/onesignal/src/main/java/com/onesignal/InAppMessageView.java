@@ -20,7 +20,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.Animation;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
@@ -113,6 +115,7 @@ class InAppMessageView {
     void setWebView(WebView webView) {
         this.webView = webView;
         this.webView.setBackgroundColor(Color.TRANSPARENT);
+
     }
 
     void setMessageController(InAppMessageViewListener messageController) {
@@ -151,6 +154,13 @@ class InAppMessageView {
                             "WebView height update skipped, new height will be used once it is displayed.");
                     return;
                 }
+//                webView.setWebChromeClient(new WebChromeClient());
+//                webView.setWebViewClient(new WebViewClient() {
+//                    @Override
+//                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                        return false;
+//                    }
+//                });
 
                 ViewGroup.LayoutParams layoutParams = webView.getLayoutParams();
                 if (layoutParams == null) {
@@ -169,8 +179,8 @@ class InAppMessageView {
                 //  not being ready to be shown yet
                 // When preparing the IAM, the correct height will be set and handle this job, so
                 //  all bases are covered and the draggableRelativeLayout will never have the wrong height
-                if (draggableRelativeLayout != null)
-                    draggableRelativeLayout.setParams(createDraggableLayoutParams(pageHeight, displayLocation, disableDragDismiss));
+//                if (draggableRelativeLayout != null)
+//                    draggableRelativeLayout.setParams(createDraggableLayoutParams(pageHeight, displayLocation, disableDragDismiss));
             }
         });
     }
@@ -350,15 +360,15 @@ class InAppMessageView {
         draggableRelativeLayout.setListener(new DraggableRelativeLayout.DraggableListener() {
             @Override
             public void onDismiss() {
-                if (messageController != null) {
-                    messageController.onMessageWillDismiss();
-                }
-                finishAfterDelay(null);
+//                if (messageController != null) {
+//                    messageController.onMessageWillDismiss();
+//                }
+              //  finishAfterDelay(null);
             }
 
             @Override
             public void onDragStart() {
-                isDragging = true;
+                isDragging = false;
             }
 
             @Override
@@ -384,7 +394,7 @@ class InAppMessageView {
      * Simple getter to know when the MessageView is in a dragging state
      */
     boolean isDragging() {
-        return isDragging;
+        return false;
     }
 
     /**
@@ -515,11 +525,11 @@ class InAppMessageView {
             handler.removeCallbacks(scheduleDismissRunnable);
             scheduleDismissRunnable = null;
         }
-        if (draggableRelativeLayout != null)
-            draggableRelativeLayout.removeAllViews();
+//        if (draggableRelativeLayout != null)
+//            draggableRelativeLayout.removeAllViews();
 
-        if (popupWindow != null)
-            popupWindow.dismiss();
+//        if (popupWindow != null)
+//            popupWindow.dismiss();
         dereferenceViews();
     }
 
@@ -626,9 +636,9 @@ class InAppMessageView {
         Animator.AnimatorListener animCallback = new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                cleanupViewsAfterDismiss();
-                if (callback != null)
-                    callback.onComplete();
+//                cleanupViewsAfterDismiss();
+//                if (callback != null)
+//                    callback.onComplete();
             }
         };
 
