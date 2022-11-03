@@ -448,13 +448,15 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
         }
         blurryRenderingWebViewForKitKatWorkAround(webView);
 //
-    //    webView.loadUrl("https://google.com/");
+//        webView.loadUrl("https://google.com/");
 
         OSViewUtils.decorViewReady(currentActivity, new Runnable() {
             @Override
             public void run() {
                 setWebViewToMaxSize(currentActivity);
-             webView.loadData(base64Message,"text/html; charset=utf-8","base64");
+                webView.loadUrl("https://google.com/");
+
+//                webView.loadData(base64Message,"text/html; charset=utf-8","base64");
             }
         });
     }
