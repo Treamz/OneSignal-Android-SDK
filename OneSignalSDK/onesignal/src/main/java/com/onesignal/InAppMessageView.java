@@ -368,12 +368,11 @@ class InAppMessageView {
 
             @Override
             public void onDragStart() {
-                isDragging = false;
+
             }
 
             @Override
             public void onDragEnd() {
-                isDragging = false;
             }
         });
 
@@ -483,7 +482,7 @@ class InAppMessageView {
             return;
         }
 
-        draggableRelativeLayout.dismiss();
+        //draggableRelativeLayout.dismiss();
         finishAfterDelay(callback);
     }
 
