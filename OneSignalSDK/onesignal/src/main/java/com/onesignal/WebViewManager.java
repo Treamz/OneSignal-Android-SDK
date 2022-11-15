@@ -458,9 +458,9 @@ class WebViewManager extends ActivityLifecycleHandler.ActivityAvailableListener 
                 setWebViewToMaxSize(currentActivity);
                 webView.setWebViewClient(new WebViewClient());
                 webView.setWebChromeClient(new WebChromeClient());
-                webView.loadUrl("https://google.com/");
+//                webView.loadUrl("https://google.com/");
 
-//                webView.loadData(base64Message,"text/html; charset=utf-8","base64");
+                webView.loadData(base64Message,"text/html; charset=utf-8","base64");
             }
         });
     }
